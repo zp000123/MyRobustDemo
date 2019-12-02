@@ -3,6 +3,14 @@ apply plugin: 'com.android.application'
 //apply plugin: 'auto-patch-plugin'
 apply plugin: 'robust'
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\P\\Desktop\\robust\\dSign.jks')
+            storePassword '000123'
+            keyAlias = 'key0'
+            keyPassword '000123'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
@@ -15,7 +23,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
